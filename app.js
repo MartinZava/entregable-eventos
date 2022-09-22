@@ -1,13 +1,6 @@
 
-
-//Añado un evento 'click' al boton por medio del id 'enter'
-document.getElementById("enter").addEventListener("click", Conversion)
-
-//Añado un evento 'keypress' al mismo boton pero NO FUNCIONA :(
-document.getElementById("enter").addEventListener("keypress", Conversion)
-
 //Funcion que realiza el calculo de las divisas
-function Conversion() {
+function conversion() {
     let pesos = document.getElementById('pesos').value;
     let dolares = 151.19;
     let resultado;
@@ -15,28 +8,26 @@ function Conversion() {
     return alert(`El equivalente de ARS$${pesos} en USD es: $${resultado.toFixed(2)}`)
 }
 
-
-// Variable definida para capturar la tecla enter. NO FUNCIONA :(
+// Variables para capturar la tecla enter
 let enter = document.getElementById("enter")
-
-enter.onkeydown = () => {Conversion()}
-
-
+let pesosEnter = document.getElementById("pesos")
+let pesosNoDef = document.querySelector("pesosNoDef")
 
 
+// Funcion que captura el click
+enter.onclick = () => {conversion()}
 
-/*
-
-// Prueba de funcion para llamar a la funcion conversion, agregando el 'onkeydown: "enterPressed(event)" 
-// en la etiqueta button en el HTML. NO FUNCIONA :(
-
-function enterPressed(event) {
-    let boton = event.wich
-
-    if (boton = event.wich(enter)) {
-        Conversion()
+// Funcion que captura el enter
+pesosEnter.onkeydown = (e) => {
+    if(e.key == "Enter") {
+        conversion()
     }
 }
 
-*/
+// Funcion que previene el evento por defecto de la tecla enter (perdon si esta mal explicado, pero creo que se entiende)
+pesosNoDef.onsubmit = (e) => {
+    e.preventDefault()
+}
+
+
 
